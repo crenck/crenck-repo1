@@ -2,4 +2,4 @@
 Test repo1
 
 
-Now adding some new code cause we are good deveelopers
+Now adding some new code cause we are good developers
