@@ -4,4 +4,7 @@
 void main()
 {
 cout<<"This is main function";
+cout<<"This is main function";
+cout<<"This is main function";
+cout<<"This is main function";
 }
