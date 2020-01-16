@@ -1,3 +1,6 @@
+/*
+ * added a comment
+*/
 #include<stdio.h>
 
 void main()
