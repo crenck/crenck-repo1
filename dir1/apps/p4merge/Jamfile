@@ -1,0 +1,129 @@
+SubDir P4QT apps p4merge ;
+
+SubDirHdrs $(P4) diff ;
+
+SubDirHdrs $(P4QT) cmd ;
+SubDirHdrs $(P4QT) coreutil ;
+SubDirHdrs $(P4QT) platform ;
+SubDirHdrs $(P4QT) plugins ;
+SubDirHdrs $(P4QT) prefs ;
+SubDirHdrs $(P4QT) resources preferences ;
+SubDirHdrs $(P4QT) shared ;
+SubDirHdrs $(P4QT) windows merge ;
+SubDirHdrs $(P4QT) windows merge imgdiff ;
+
+SubDirHdrs $(P4) i18n ;
+
+if $(OS) = MACOSX
+{
+    SubDirHdrs $(P4) sys ;
+    SubDirHdrs $(P4) zlib ;
+    LINKLIBS on p4merge_mac_shim += -framework AppKit ;
+    LinkLibraries p4merge_mac_shim :
+        $(SUPPORTLIB)
+        ;
+
+    Main p4merge_mac_shim :
+        mac_shim_main.m
+        ;
+}
+
+LinkLibraries p4merge :
+    $(QTMERGEAPPLIB)
+    $(QTMERGELIB)
+    $(QTCMDLIB)
+    $(QTPREFLIB)
+    $(QTCORELIB)
+    $(QTSHAREDLIB)
+    $(CLIENTLIB)
+    $(SUPPORTLIB)
+    $(QTIMGMAYALIB)
+    $(QTIMGPHOTOLIB)
+    $(QTIMGTGALIB) 
+    ;
+
+if $(OS) = NT
+{
+    LinkLibraries p4merge : $(QTIMGMAXLIB) ;
+}
+
+QtDefines ;
+
+Ident AboutBox.cpp ;
+Ident P4mArgs.cpp ;
+
+QtLibrary $(QTMERGEAPPLIB) : p4merge :
+    AboutBox.cpp
+    P4mPreferencesDialog.cpp
+    MergeMainWindow.cpp
+    ImgMainWindow.cpp
+    CompareDialog.cpp
+    P4mApplication.cpp
+    p4mmain.cpp
+    P4mArgs.cpp
+    WebKitMainWindow.cpp
+    ;
+
+QtMocLibrary $(QTMERGEAPPLIB) :
+    P4mApplication.h
+    AboutBox.h
+    P4mPreferencesDialog.h
+    CompareDialog.h
+    MergeMainWindow.h
+    ImgMainWindow.h
+    P4mApplication.h
+    WebKitMainWindow.h
+    ;
+
+if $(OS) = MACOSX
+{
+    Library $(QTMERGEAPPLIB) :
+        P4mAppleEventHandler.cpp
+        ;
+    QtMocLibrary $(QTMERGEAPPLIB) :
+        P4mAppleEventHandler.h
+        ;
+    Main p4merge :
+        standalone_main.cpp
+        ;
+}
+else
+{
+    Main p4merge :
+        standalone_main.cpp
+        ;
+
+}
+
+QtLinkage p4merge ;
+
+QtLrelease p4merge :
+    p4merge
+    p4qt-merge
+    p4qt-core
+    p4qt-shared
+    ;
+
+SubDir P4QT apps p4merge img ;
+
+LinkSSL p4merge ;
+
+if $(OS) = MACOSX
+{
+    QtMacIcons p4merge : p4merge.icns ;
+    QtMacAddPListItem p4merge : CFBundleName : P4Merge ;
+    QtMacAddPListItem p4merge : CFBundleSignature : P4MG ;
+    QtMacAddPListItem p4merge : CFBundleIdentifier : com.perforce.p4merge ;
+
+    if $(OSVER) = 107
+    {
+        OnTargetVarAppend p4merge : LINKFLAGS : -lstdc++.6 ;
+        OnTargetVarDelete p4merge : LINKFLAGS : -lstdc++ ;
+    }
+}
+
+if $(OS) = NT
+{
+    WinRes p4merge : p4merge.rc ;
+    WinResIdent p4merge.rc ;
+}

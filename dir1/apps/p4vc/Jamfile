@@ -1,0 +1,328 @@
+SubDir P4QT apps p4vc ;
+
+SubDirHdrs $(P4QT) platform ;
+SubDirHdrs $(P4QT) shared p4vc ;
+
+SubDirHdrs $(P4) client ;
+SubDirHdrs $(P4) i18n ;
+QtDefines ;
+
+Ident VCClient.cpp ;
+
+ExLibrary p4vc-parser :
+  option_parser.cpp
+  ;
+
+QtMocLibrary p4vc-utility :
+    p4vLauncher.h
+    VCClient.h
+    ;
+
+ExLibrary p4vc-utility :
+    p4vLauncher.cpp
+    VCClient.cpp
+    ;
+
+if $(OS) = NT
+{
+    LinkLib p4vc :
+        psapi
+        ;
+}
+
+if $(OS) = MACOSX
+{
+    if $(OSVER) = 107
+    {
+        OnTargetVarAppend p4vc : LINKFLAGS : -lstdc++.6 ;
+        OnTargetVarDelete p4vc : LINKFLAGS : -lstdc++ ;
+    }
+}
+
+LinkLibraries p4vc :
+  p4vc-parser
+  p4vc-utility
+  $(QTSHAREDLIB)
+  $(CLIENTLIB)
+    $(RPCLIB)
+  $(SUPPORTLIB)
+  ;
+
+Ident p4vc.cpp ;
+
+LinkSSL p4vc ;
+
+ExP4Main p4vc :
+    p4vc.cpp
+    ;
+
+QtConsoleLinkage p4vc ;
+
+################################################################################
+# Document the Qt static libs used by p4vc   
+#
+#
+#
+################################################################################
+# Static qtlite build of qt5.8.0-1 feature method 1.6 GB
+#./configure \
+#  -platform linux-g++-64 \
+#  -c++std c++11 \
+#  -prefix /home/qtdev/lib/qt5.8.0-static \
+#  -feature-ssl \
+#  -openssl-linked -L/home/qtdev/ssl/lib -I/home/qtdev/ssl/include \
+#  -no-rpath \
+#  -release \
+#  -silent \
+#  -static \
+#  -force-debug-info \
+#  -feature-system-doubleconversion \
+#  -feature-doubleconversion \
+#  -no-libpng \
+#  -no-libjpeg \
+#  -no-gui \
+#  -no-feature-accessibility \
+#  -no-feature-accessibility-atspi-bridge \
+#  -no-feature-android-style-assets \
+#  -no-feature-angle \
+#  -no-feature-bluez \
+#  -no-feature-clock-gettime \
+#  -no-feature-cups \
+#  -no-feature-desktopservices \
+#  -no-feature-direct2d \
+#  -no-feature-directfb \
+#  -no-feature-egl \
+#  -no-feature-eglfs \
+#  -no-feature-evdev \
+#  -no-feature-fontconfig \
+#  -no-feature-gif \
+#  -no-feature-glib \
+#  -no-feature-gnu-libiconv \
+#  -no-feature-gtk3 \
+#  -no-feature-gypsy \
+#  -no-feature-harfbuzz \
+#  -no-feature-ico \
+#  -no-feature-iconv \
+#  -no-feature-icu \
+#  -no-feature-inotify \
+#  -no-feature-integrityfb \
+#  -no-feature-jpeg \
+#  -no-feature-libatomic \
+#  -no-feature-libinput \
+#  -no-feature-libinput-axis-api \
+#  -no-feature-libproxy \
+#  -no-feature-linuxfb \
+#  -no-feature-mirclient \
+#  -no-feature-mtdev \
+#  -no-feature-opengl \
+#  -no-feature-opengles2 \
+#  -no-feature-opengles3 \
+#  -no-feature-opengles31 \
+#  -no-feature-png \
+#  -no-feature-posix-libiconv \
+#  -no-feature-sctp \
+#  -no-feature-sdl2 \
+#  -no-feature-securetransport \
+#  -no-feature-sensorfw \
+#  -no-feature-sql-db2 \
+#  -no-feature-sql-ibase \
+#  -no-feature-sql-mysql \
+#  -no-feature-sql-oci \
+#  -no-feature-sql-odbc \
+#  -no-feature-sql-psql \
+#  -no-feature-sql-sqlite \
+#  -no-feature-sql-sqlite2 \
+#  -no-feature-sql-tds \
+#  -no-feature-system-harfbuzz \
+#  -no-feature-system-jpeg \
+#  -no-feature-system-pcre \
+#  -no-feature-system-png \
+#  -no-feature-system-sqlite \
+#  -no-feature-system-xcb \
+#  -no-feature-tslib \
+#  -no-feature-xcb \
+#  -no-feature-xinput2 \
+#  -no-feature-xkb \
+#  -no-feature-xkbcommon-evdev \
+#  -no-feature-xlib \
+#  -no-feature-xrender \
+#  -nomake examples \
+#  -nomake tests \
+#  -skip qtwebengine \
+#  -skip qtdeclarative\
+#  -skip xmlpatterns \
+#  -skip qtwayland \
+#  -skip qttools \
+#  -skip qtserialbus \
+#  -skip qtmultimedia \
+#  -confirm-license \
+#  --recheck-all
+#
+##  -no-feature-proprietary-codecs \
+##  -no-feature-spellchecker \
+##  -no-feature-quick-animatedimage \
+##  -no-feature-quick-canvas \
+##  -no-feature-quick-designer \
+##  -no-feature-quick-flipable \
+##  -no-feature-quick-listview \
+##  -no-feature-quick-path \
+##  -no-feature-quick-pathview \
+##  -no-feature-quick-positioners \
+##  -no-feature-quick-sprite \
+##  -no-feature-d3d12 \
+#
+##  -skip qtwayland \
+##  -no-feature-system-assimp \
+##  -no-feature-drm-egl-server \
+##  -no-feature-libhybris-egl-server \
+##  -no-feature-wayland-brcm \
+##  -no-feature-wayland-client \
+##  -no-feature-wayland-egl \
+##  -no-feature-wayland-server \
+##  -no-feature-xcomposite-egl \
+##  -no-feature-xcomposite-glx \
+#
+##  -skip qtserialbus \
+##  -no-feature-socketcan \
+#
+##  -skip qtmultimedia \
+##  -no-feature-alsa \
+##  -no-feature-directshow \
+##  -no-feature-directshow-player \
+##  -no-feature-evr \
+##  -no-feature-gstreamer \
+##  -no-feature-openal \
+##  -no-feature-pulseaudio \
+##  -no-feature-resourcepolicy \
+##  -no-feature-wasapi \
+##  -no-feature-wmf \
+##  -no-feature-wmf-player \
+##  -no-feature-wmsdk \
+##  -no-feature-wshellitem \
+#
+##  -no-feature-openssl \
+##  -no-feature-openssl-linked \
+##  -no-feature-ssl \
+# 
+
+################################################################################
+# Static qtlite build of qt5.8.0-1 skip method 550MB
+#./configure \
+#  -platform linux-g++-64 \
+#  -c++std c++11 \
+#  -prefix /home/qtdev/lib/qt5.8.0-static-skip \
+#  -release \
+#  -silent \
+#  -static \
+#  -no-rpath \
+#  -force-debug-info \
+#  -feature-ssl \
+#  -openssl-linked -L/home/qtdev/ssl/lib -I/home/qtdev/ssl/include \
+#  -feature-system-doubleconversion \
+#  -feature-doubleconversion \
+#  -no-libpng \
+#  -no-libjpeg \
+#  -no-gui \
+#  -no-feature-accessibility \
+#  -no-feature-accessibility-atspi-bridge \
+#  -no-feature-android-style-assets \
+#  -no-feature-angle \
+#  -no-feature-clock-gettime \
+#  -no-feature-cups \
+#  -no-feature-desktopservices \
+#  -no-feature-direct2d \
+#  -no-feature-directfb \
+#  -no-feature-egl \
+#  -no-feature-eglfs \
+#  -no-feature-evdev \
+#  -no-feature-fontconfig \
+#  -no-feature-gif \
+#  -no-feature-glib \
+#  -no-feature-gnu-libiconv \
+#  -no-feature-gtk3 \
+#  -no-feature-harfbuzz \
+#  -no-feature-ico \
+#  -no-feature-iconv \
+#  -no-feature-icu \
+#  -no-feature-inotify \
+#  -no-feature-integrityfb \
+#  -no-feature-jpeg \
+#  -no-feature-libatomic \
+#  -no-feature-libinput \
+#  -no-feature-libinput-axis-api \
+#  -no-feature-libproxy \
+#  -no-feature-linuxfb \
+#  -no-feature-mirclient \
+#  -no-feature-mtdev \
+#  -no-feature-opengl \
+#  -no-feature-opengles2 \
+#  -no-feature-opengles3 \
+#  -no-feature-opengles31 \
+#  -no-feature-png \
+#  -no-feature-posix-libiconv \
+#  -no-feature-sctp \
+#  -no-feature-securetransport \
+#  -no-feature-sql-db2 \
+#  -no-feature-sql-ibase \
+#  -no-feature-sql-mysql \
+#  -no-feature-sql-oci \
+#  -no-feature-sql-odbc \
+#  -no-feature-sql-psql \
+#  -no-feature-sql-sqlite \
+#  -no-feature-sql-sqlite2 \
+#  -no-feature-sql-tds \
+#  -no-feature-system-harfbuzz \
+#  -no-feature-system-jpeg \
+#  -no-feature-system-pcre \
+#  -no-feature-system-png \
+#  -no-feature-system-sqlite \
+#  -no-feature-system-xcb \
+#  -no-feature-tslib \
+#  -no-feature-xcb \
+#  -no-feature-xinput2 \
+#  -no-feature-xkb \
+#  -no-feature-xkbcommon-evdev \
+#  -no-feature-xlib \
+#  -no-feature-xrender \
+#  -skip qt3d \
+#  -skip qtactiveqt \
+#  -skip qtandroidextras \
+#  -skip qtcanvas3d \
+#  -skip qtcharts \
+#  -skip qtconnectivity \
+#  -skip qtdatavis3d \
+#  -skip qtdeclarative \
+#  -skip qtdoc \
+#  -skip qtgamepad \
+#  -skip qtgraphicaleffects \
+#  -skip qtimageformats \
+#  -skip qtlocation \
+#  -skip qtmacextras \
+#  -skip qtmultimedia \
+#  -skip qtnetworkauth \
+#  -skip qtpurchasing \
+#  -skip qtquickcontrols2 \
+#  -skip qtscript \
+#  -skip qtscxml \
+#  -skip qtsensors \
+#  -skip qtserialbus \
+#  -skip qtserialport \
+#  -skip qtspeech \
+#  -skip qtsvg \
+#  -skip qttools \
+#  -skip qttranslations \
+#  -skip qtvirtualkeyboard \
+#  -skip qtwayland \
+#  -skip qtwebchannel \
+#  -skip qtwebengine \
+#  -skip qtwebsockets \
+#  -skip qtwebview \
+#  -skip qtwinextras \
+#  -skip qtx11extras \
+#  -skip qtxmlpatterns \
+#  -nomake examples \
+#  -nomake tests \
+#  -confirm-license \
+#  -recheck-all
+#
+#################################################################################

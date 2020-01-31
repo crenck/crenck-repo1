@@ -1,0 +1,102 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "p4v", "p4v.vcproj", "{6151CF3D-FD31-4496-A9D0-713C230E3CE6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "p4merge", "..\p4merge\p4merge.vcproj", "{C209313E-A032-47F2-BA89-D8485BEC1C26}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "guiapp", "..\guiapp\guiapp.vcproj", "{AF3C2F43-1D4E-4121-86B9-A945B01BEA89}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui", "..\gui\gui.vcproj", "{FA2225F3-B1C4-46E0-BC5B-9DA400797E9A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "p4tree", "..\p4tree\p4tree.vcproj", "{2DFBD2A0-0968-499A-92AC-4090F0FFD973}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "util", "..\util\util.vcproj", "{A008375C-FC83-4EFF-A3DE-CF976E13C8DE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "obj", "..\obj\obj.vcproj", "{09AE103C-5707-44BE-8F67-2689CAC984AC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "op", "..\op\op.vcproj", "{38C7E987-D54E-4FBA-8428-7B34B2AB79EA}"
+EndProject
+Global
+    GlobalSection(SourceCodeControl) = preSolution
+        SccNumberOfProjects = 8
+        SccProjectName0 = \u0022Perforce\u0020Project\u0022
+        SccLocalPath0 = ..
+        SccProvider0 = MSSCCI:Perforce\u0020SCM
+        CanCheckoutShared = true
+        SccProjectFilePathRelativizedFromConnection0 = p4v\\
+        SolutionUniqueID = {1F1D9B6E-6968-41EC-8E73-C63703843BC2}
+        SccProjectUniqueName1 = ..\\gui\\gui.vcproj
+        SccLocalPath1 = ..
+        CanCheckoutShared = true
+        SccProjectFilePathRelativizedFromConnection1 = gui\\
+        SccProjectUniqueName2 = ..\\guiapp\\guiapp.vcproj
+        SccLocalPath2 = ..
+        CanCheckoutShared = true
+        SccProjectFilePathRelativizedFromConnection2 = guiapp\\
+        SccProjectUniqueName3 = ..\\obj\\obj.vcproj
+        SccLocalPath3 = ..
+        CanCheckoutShared = true
+        SccProjectFilePathRelativizedFromConnection3 = obj\\
+        SccProjectUniqueName4 = ..\\p4merge\\p4merge.vcproj
+        SccLocalPath4 = ..
+        CanCheckoutShared = true
+        SccProjectFilePathRelativizedFromConnection4 = p4merge\\
+        SccProjectUniqueName5 = ..\\p4tree\\p4tree.vcproj
+        SccLocalPath5 = ..
+        CanCheckoutShared = true
+        SccProjectFilePathRelativizedFromConnection5 = p4tree\\
+        SccProjectUniqueName6 = ..\\util\\util.vcproj
+        SccLocalPath6 = ..
+        CanCheckoutShared = true
+        SccProjectFilePathRelativizedFromConnection6 = util\\
+        SccProjectUniqueName7 = ..\\op\\op.vcproj
+        SccLocalPath7 = ..
+        CanCheckoutShared = true
+        SccProjectFilePathRelativizedFromConnection7 = op\\
+    EndGlobalSection
+    GlobalSection(SolutionConfiguration) = preSolution
+        ConfigName.0 = Debug
+        ConfigName.1 = Release
+    EndGlobalSection
+    GlobalSection(ProjectDependencies) = postSolution
+        {6151CF3D-FD31-4496-A9D0-713C230E3CE6}.0 = {C209313E-A032-47F2-BA89-D8485BEC1C26}
+        {C209313E-A032-47F2-BA89-D8485BEC1C26}.0 = {A008375C-FC83-4EFF-A3DE-CF976E13C8DE}
+    EndGlobalSection
+    GlobalSection(ProjectConfiguration) = postSolution
+        {6151CF3D-FD31-4496-A9D0-713C230E3CE6}.Debug.ActiveCfg = Debug|Win32
+        {6151CF3D-FD31-4496-A9D0-713C230E3CE6}.Debug.Build.0 = Debug|Win32
+        {6151CF3D-FD31-4496-A9D0-713C230E3CE6}.Release.ActiveCfg = Release|Win32
+        {6151CF3D-FD31-4496-A9D0-713C230E3CE6}.Release.Build.0 = Release|Win32
+        {C209313E-A032-47F2-BA89-D8485BEC1C26}.Debug.ActiveCfg = Debug|Win32
+        {C209313E-A032-47F2-BA89-D8485BEC1C26}.Debug.Build.0 = Debug|Win32
+        {C209313E-A032-47F2-BA89-D8485BEC1C26}.Release.ActiveCfg = Release|Win32
+        {C209313E-A032-47F2-BA89-D8485BEC1C26}.Release.Build.0 = Release|Win32
+        {AF3C2F43-1D4E-4121-86B9-A945B01BEA89}.Debug.ActiveCfg = Debug|Win32
+        {AF3C2F43-1D4E-4121-86B9-A945B01BEA89}.Debug.Build.0 = Debug|Win32
+        {AF3C2F43-1D4E-4121-86B9-A945B01BEA89}.Release.ActiveCfg = Release|Win32
+        {AF3C2F43-1D4E-4121-86B9-A945B01BEA89}.Release.Build.0 = Release|Win32
+        {FA2225F3-B1C4-46E0-BC5B-9DA400797E9A}.Debug.ActiveCfg = Debug|Win32
+        {FA2225F3-B1C4-46E0-BC5B-9DA400797E9A}.Debug.Build.0 = Debug|Win32
+        {FA2225F3-B1C4-46E0-BC5B-9DA400797E9A}.Release.ActiveCfg = Release|Win32
+        {FA2225F3-B1C4-46E0-BC5B-9DA400797E9A}.Release.Build.0 = Release|Win32
+        {2DFBD2A0-0968-499A-92AC-4090F0FFD973}.Debug.ActiveCfg = Debug|Win32
+        {2DFBD2A0-0968-499A-92AC-4090F0FFD973}.Debug.Build.0 = Debug|Win32
+        {2DFBD2A0-0968-499A-92AC-4090F0FFD973}.Release.ActiveCfg = Release|Win32
+        {2DFBD2A0-0968-499A-92AC-4090F0FFD973}.Release.Build.0 = Release|Win32
+        {A008375C-FC83-4EFF-A3DE-CF976E13C8DE}.Debug.ActiveCfg = Debug|Win32
+        {A008375C-FC83-4EFF-A3DE-CF976E13C8DE}.Debug.Build.0 = Debug|Win32
+        {A008375C-FC83-4EFF-A3DE-CF976E13C8DE}.Release.ActiveCfg = Release|Win32
+        {A008375C-FC83-4EFF-A3DE-CF976E13C8DE}.Release.Build.0 = Release|Win32
+        {09AE103C-5707-44BE-8F67-2689CAC984AC}.Debug.ActiveCfg = Debug|Win32
+        {09AE103C-5707-44BE-8F67-2689CAC984AC}.Debug.Build.0 = Debug|Win32
+        {09AE103C-5707-44BE-8F67-2689CAC984AC}.Release.ActiveCfg = Release|Win32
+        {09AE103C-5707-44BE-8F67-2689CAC984AC}.Release.Build.0 = Release|Win32
+        {38C7E987-D54E-4FBA-8428-7B34B2AB79EA}.Debug.ActiveCfg = Debug|Win32
+        {38C7E987-D54E-4FBA-8428-7B34B2AB79EA}.Debug.Build.0 = Debug|Win32
+        {38C7E987-D54E-4FBA-8428-7B34B2AB79EA}.Release.ActiveCfg = Release|Win32
+        {38C7E987-D54E-4FBA-8428-7B34B2AB79EA}.Release.Build.0 = Release|Win32
+    EndGlobalSection
+    GlobalSection(ExtensibilityGlobals) = postSolution
+    EndGlobalSection
+    GlobalSection(ExtensibilityAddIns) = postSolution
+    EndGlobalSection
+EndGlobal

@@ -1,0 +1,57 @@
+SubDir P4QT apps p4thumb ;
+
+SubDirHdrs $(P4QT) coreutil ;
+SubDirHdrs $(P4QT) plugins ;
+SubDirHdrs $(P4QT) shared ;
+SubDirHdrs $(P4QT) platform ;
+SubDirHdrs $(P4QT) p4api agents ;
+SubDirHdrs $(P4QT) p4api obj ;
+SubDirHdrs $(P4QT) p4api op ;
+SubDirHdrs $(P4QT) prefs ;
+SubDirHdrs $(P4QT) apps p4thumb thumbconfig ;
+
+QtDefines ;
+
+QtLibrary $(P4TD) : p4thumb :
+    ISConverter.cpp
+        ;
+
+LinkLibraries p4thumb :
+    $(P4TD)
+    $(QTSHAREDLIB)
+    $(QTPREFLIB)
+    $(QTP4APILIB)
+    $(QTPLATLIB)
+    $(QTCORELIB)
+    $(CLIENTLIB)
+    $(RPCLIB)
+    $(SUPPORTLIB)
+    $(QTTHUMBCONFIG)
+    ;
+
+QtMocLibrary $(P4TD) :
+    ISConverter.h
+    ;
+
+Ident p4tdmain.cpp ;
+
+P4Main p4thumb :
+    p4tdmain.cpp
+    ThumbPlugin.cpp
+    ;
+
+
+rule QtThumbLinkage
+{
+    local v ;
+    if $(OS) != MACOSX { v = 5 ; }
+    local qtlibs = Core Gui Network Xml Widgets ;
+
+    QtConsoleLinkage $(<) : Qt$(v:E=)$(qtlibs) ;
+}
+
+QtThumbLinkage p4thumb ;
+
+LinkSSL p4thumb ;
+
+SubInclude P4QT apps p4thumb thumbconfig ;

@@ -1,0 +1,25 @@
+{
+    "settings": {
+        "connection": {
+            "client": "thumbnailClient",
+            "port": "localhost:1666",
+            "user": "thumbuser"
+        },
+        "logFile": "./spec/thumblog.out",
+        "pollInterval": "1"
+    },
+    "conversions": [{
+        "extensions": [
+            "jpg",
+            "jpeg"
+        ],
+        "execPath": "/usr/local/bin/convert",
+        "arguments": [
+            "-resize",
+            "160x160",
+            "$FILEIN",
+            "$FILEOUT"
+        ],
+        "convertToPng": false
+        }, ]
+}

@@ -1,0 +1,53 @@
+{
+  "settings": {
+    "connection": {
+      "client": "thumbnailClient",
+      "port": "perforce:1666",
+      "user": "thumbuser"
+    },
+    "logFile": "C:\\Users\\thumbuser\\thumblog.out"
+  },
+  "conversions": [
+    {
+      "extensions": [
+        "max"
+      ],
+      "execPath": "C:\\Program Files (x86)\\XnView\\nconvert.exe",
+      "arguments": [
+        "-out",
+        "png",
+        "-o",
+        "$FILEOUT",
+        "-ratio",
+        "-resize",
+        "160",
+        "160",
+        "-ctype",
+        "rgba",
+        "-sharpen",
+        "50",
+        "-transparent",
+        "25",
+        "$FILEIN"
+      ]
+    },
+    {
+      "extensions": [
+        "psd",
+	"svg"
+      ],
+      "execPath": "C:\\Program Files (x86)\\XnView\\nconvert.exe",
+      "arguments": [
+        "-out",
+        "png",
+        "-o",
+        "$FILEOUT",
+        "-ratio",
+        "-resize",
+        "160",
+        "160",
+        "$FILEIN"
+      ]
+    }
+  ]
+}

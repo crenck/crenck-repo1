@@ -1,0 +1,8 @@
+SubDir P4QT apps ;
+SubInclude P4QT apps p4admin ;
+SubInclude P4QT apps p4merge ;
+SubInclude P4QT apps p4thumb ;
+SubInclude P4QT apps p4v ;
+SubInclude P4QT apps p4vc ;
+
+

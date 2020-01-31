@@ -1,0 +1,22 @@
+Client:	testClient
+
+Update:	2017/11/10 16:51:46
+
+Access:	2017/11/10 18:39:09
+
+Owner:	perforce
+
+Host:	changeme
+
+Description:
+	Created by perforce.
+
+Options:	noallwrite noclobber nocompress unlocked nomodtime normdir
+
+SubmitOptions:	submitunchanged
+
+LineEnd:	local
+
+View:
+	//depot/... //testClient/...
+

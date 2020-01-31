@@ -1,0 +1,13 @@
+SubDir P4QT apps p4thumb thumbconfig ;
+
+QtDefines ;
+
+QtLibrary $(QTTHUMBCONFIG) : libqtthcfg :
+    changelistrange.cpp
+    config.cpp
+    connection.cpp
+    conversion.cpp
+    dimension.cpp
+    settings.cpp
+    ;
+

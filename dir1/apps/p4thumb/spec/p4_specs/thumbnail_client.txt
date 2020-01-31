@@ -1,0 +1,23 @@
+Client:	thumbnailClient
+
+Update:	2017/11/10 16:45:20
+
+Access:	2017/11/10 16:45:20
+
+Owner:	thumbuser
+
+Host:	changeme
+
+Description:
+	Created by thumbuser.
+
+Options:	noallwrite noclobber nocompress unlocked nomodtime normdir
+
+SubmitOptions:	submitunchanged
+
+LineEnd:	local
+
+View:
+	//depot/balloon.jpg //thumbnailClient/balloon.jpg
+	//depot/balloon.tiff //thumbnailClient/balloon.tiff
+

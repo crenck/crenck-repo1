@@ -1,0 +1,86 @@
+{
+    "settings": {
+        "connection": {
+            "client": "thumbnailClient",
+            "port": "localhost:1666",
+            "user": "thumbuser"
+        },
+        "logFile": "./spec/thumblog.out",
+        "pollInterval": 1,
+        "maxFileSize" : 100
+    },
+    "conversions": [
+        {
+	    "extensions": [
+                "gif",
+                "tiff"
+            ],
+	    "execPath": "/usr/local/bin/nconvert",
+            "arguments": [
+                "-resize",
+                "160",
+                "160",
+                "-out",
+                "png",
+                "-o",
+                "$FILEOUT",
+                "$FILEIN"
+            ]
+        },
+        {
+	    "extensions": [
+                "ppm"
+            ],
+	    "execPath": "/usr/local/bin/convert",
+            "arguments": [
+                "$FILEIN",
+                "--thumbnail",
+                "160x160",
+                "$FILEOUT"
+            ] 
+        },
+        {
+	    "extensions": [
+                "pdf"
+            ],
+	    "execPath": "/usr/local/bin/convert",
+            "arguments": [
+                "-resize",
+                "x160",
+                "-background",
+                "white",
+                "-alpha",
+                "remove",
+                "$FILEIN[0]",
+                "$FILEOUT"
+            ]
+        },
+        {
+	    "extensions": [
+                "jpg",
+                "jpeg"
+            ],
+	    "execPath": "/usr/local/bin/convert",
+            "arguments": [
+                "-resize",
+                "160x160",
+                "$FILEIN",
+                "$FILEOUT"
+            ],
+            "convertToPng": false
+        },
+        {
+	    "extensions": [
+                "ai",
+                "svg"
+            ],
+	    "execPath": "/usr/local/bin/convert",
+            "arguments": [
+                "-resize",
+                "160x160",
+                "$FILEIN",
+                "$FILEOUT"
+            ]
+        }
+    ]
+}

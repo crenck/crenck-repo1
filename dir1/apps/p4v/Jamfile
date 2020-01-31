@@ -1,0 +1,132 @@
+SubDir P4QT apps p4v ;
+
+SubDirHdrs $(P4QT) cmd ;
+SubDirHdrs $(P4QT) coreutil ;
+SubDirHdrs $(P4QT) gui ;
+SubDirHdrs $(P4QT) gui web ;
+SubDirHdrs $(P4QT) p4api agents ;
+SubDirHdrs $(P4QT) p4api obj ;
+SubDirHdrs $(P4QT) p4api op ;
+SubDirHdrs $(P4QT) platform ;
+SubDirHdrs $(P4QT) prefs ;
+SubDirHdrs $(P4QT) resources preferences ;
+SubDirHdrs $(P4QT) resources preferences connections ;
+SubDirHdrs $(P4QT) resources preferences customtools ;
+SubDirHdrs $(P4QT) shared ;
+SubDirHdrs $(P4QT) shared p4vc ;
+SubDirHdrs $(P4QT) windows bookmarks ;
+SubDirHdrs $(P4QT) windows connection ;
+SubDirHdrs $(P4QT) windows connection wizard ;
+SubDirHdrs $(P4QT) windows diff ;
+SubDirHdrs $(P4QT) windows dvcs ;
+SubDirHdrs $(P4QT) windows file ;
+SubDirHdrs $(P4QT) windows goto ;
+SubDirHdrs $(P4QT) windows integrate ;
+SubDirHdrs $(P4QT) windows labelsync ;
+SubDirHdrs $(P4QT) windows moverename ;
+SubDirHdrs $(P4QT) windows preferences ;
+SubDirHdrs $(P4QT) windows preferences pages ;
+SubDirHdrs $(P4QT) windows reconcile ;
+SubDirHdrs $(P4QT) windows resolve ;
+SubDirHdrs $(P4QT) windows specs ;
+SubDirHdrs $(P4QT) windows streams ;
+SubDirHdrs $(P4QT) windows sync ;
+SubDirHdrs $(P4QT) windows timelapse ;
+SubDirHdrs $(P4QT) windows tools ;
+SubDirHdrs $(P4QT) windows tree ;
+SubDirHdrs $(P4QT) windows workspace ;
+
+DEFINES += NODIFF ;
+
+QtDefines ;
+
+QtMocLibrary $(SANDSTORM) :
+    SWorkspace.h
+    ;
+
+QtLibrary $(SANDSTORM) : p4qt :
+    SWorkspace.cpp
+    ;
+
+QtMocLibrary $(P4V) :
+    ClientPortCommandHandler.h
+    P4VCommandLine.h
+    P4VCommandRunner.h
+    RCFServer.h
+    SandstormApp.h
+    ;
+
+QtLibrary $(P4V) : p4v :
+    ClientPortCommandHandler.cpp
+    MainOption.cpp
+    MainP4v.cpp
+    MainVersion.cpp
+    P4VCommandHandler.cpp
+    P4VCommandLine.cpp
+    P4VCommandRunner.cpp
+    RCFServer.cpp
+    SandstormApp.cpp
+    ;
+
+LinkLibraries p4v :
+    $(P4V)
+    $(SANDSTORM)
+    $(QTCMDLIB)
+    $(QTIMGMAYALIB)
+    $(QTIMGPHOTOLIB)
+    $(QTIMGTGALIB)
+    $(QTPREFLIB)
+    $(QTP4APILIB)
+    $(QTCORELIB)
+    $(QTSHAREDLIB)
+    $(CLIENTLIB)
+    $(RPCLIB)
+    $(SUPPORTLIB)
+    ;
+
+if $(OS) = NT
+{
+    LinkLibraries p4v : $(QTIMGMAXLIB) ;
+}
+
+LinkSSL p4v ;
+
+P4Main p4v : Sandstorm.cpp ;
+
+QtLinkage p4v ;
+
+QtLrelease p4v :
+    p4v
+    p4qt
+    p4qt-core
+    p4qt-shared
+    p4qt-p4api
+    ;
+
+SubDir P4QT apps p4v img ;
+
+if $(OS) = MACOSX
+{
+    QtMacIcons p4v : p4v.icns ;
+    QtMacAddPListItem p4v : CFBundleName : P4V ;
+    QtMacAddPListItem p4v : CFBundleSignature : P4VC ;
+    QtMacAddPListItem p4v : CFBundleIdentifier : com.perforce.p4v ;
+
+    if $(P4VDEVELOPER)
+    {
+        local resourceDir = p4v.app/Contents/Resources ;
+        Deploy [ FDirName $(resourceDir) images.rcc ] : images.rcc ;
+    }
+
+    if $(OSVER) = 107
+    {
+        OnTargetVarAppend p4v : LINKFLAGS : -lstdc++.6 ;
+        OnTargetVarDelete p4v : LINKFLAGS : -lstdc++ ;
+    }
+}
+
+if $(OS) = NT
+{
+    WinRes p4v : p4v.rc ;
+    WinResIdent p4v.rc ;
+}

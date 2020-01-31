@@ -1,0 +1,95 @@
+SubDir P4QT apps p4admin ;
+
+SubDirHdrs $(P4QT) cmd ;
+SubDirHdrs $(P4QT) coreutil ;
+SubDirHdrs $(P4QT) gui ;
+SubDirHdrs $(P4QT) p4api agents ;
+SubDirHdrs $(P4QT) p4api obj ;
+SubDirHdrs $(P4QT) p4api op ;
+SubDirHdrs $(P4QT) platform ;
+SubDirHdrs $(P4QT) prefs ;
+SubDirHdrs $(P4QT) resources preferences ;
+SubDirHdrs $(P4QT) shared ;
+SubDirHdrs $(P4QT) shared p4vc ;
+SubDirHdrs $(P4QT) windows admin ;
+SubDirHdrs $(P4QT) windows admin qtsingleapplication ;
+SubDirHdrs $(P4QT) windows diff ;
+SubDirHdrs $(P4QT) windows file ;
+SubDirHdrs $(P4QT) windows preferences ;
+SubDirHdrs $(P4QT) windows preferences pages ;
+SubDirHdrs $(P4QT) windows specs ;
+SubDirHdrs $(P4QT) windows swoosh ;
+SubDirHdrs $(P4QT) windows timelapse ;
+
+QtDefines ;
+
+SubDirHdrs $(P4) i18n ;
+
+LinkLibraries p4admin :
+    $(QTADMINAPPLIB)
+    $(QTADMINLIB)
+    $(SANDSTORM)
+    $(QTADMINLIB)
+    $(QTCMDLIB)
+    $(QTPREFLIB)
+    $(QTP4APILIB)
+    $(QTCORELIB)
+    $(QTSHAREDLIB)
+    $(CLIENTLIB)
+    $(RPCLIB)
+    $(SUPPORTLIB)
+    ;
+    
+QtDefines ;
+
+QtMocLibrary $(QTADMINAPPLIB) :
+    AdminShellApplication.h
+    MiniQApp.h
+    P4AdminApplication.h
+    UIAdminPreferencesDialog.h
+    ;
+
+QtLibrary $(QTADMINAPPLIB) : p4admin :
+    AdminCommandHandler.cpp
+    AdminShellApplication.cpp
+    MiniQApp.cpp
+    P4AdminApplication.cpp
+    UIAdminPreferencesDialog.cpp
+    ;
+
+
+Main p4admin : AdminMain.cpp ;
+    
+QtLinkage p4admin ;
+
+QtLrelease p4admin :
+    p4admin
+    p4qt
+    p4qt-core
+    p4qt-shared
+    p4qt-p4api
+    ;
+
+SubDir P4QT apps p4admin img ;
+
+LinkSSL p4admin ;
+
+if $(OS) = MACOSX
+{
+    QtMacIcons p4admin : p4admin.icns ;
+    QtMacAddPListItem p4admin : CFBundleName : P4Admin ;
+    QtMacAddPListItem p4admin : CFBundleSignature : P4AT ;
+    QtMacAddPListItem p4admin : CFBundleIdentifier : com.perforce.p4admin ;
+
+    if $(OSVER) = 107
+    {
+        OnTargetVarAppend p4admin : LINKFLAGS : -lstdc++.6 ;
+        OnTargetVarDelete p4admin : LINKFLAGS : -lstdc++ ;
+    }
+}
+
+if $(OS) = NT
+{
+    WinRes p4admin : p4admin.rc ;
+    WinResIdent p4admin.rc ;
+}

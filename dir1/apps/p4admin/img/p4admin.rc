@@ -1,0 +1,100 @@
+/////////////////////////////////////////////////////////////////////////////
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+#define P4_STRING_COPYRIGHT L"Copyright "P4_COPYRIGHT" Perforce Software"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION P4_INT_MAJOR,P4_INT_MINOR,P4_INT_HBUILD,P4_INT_LBUILD
+PRODUCTVERSION P4_INT_MAJOR,P4_INT_MINOR,0,0
+
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0xbL
+#else
+ FILEFLAGS 0xaL
+#endif
+ FILEOS 0x10001L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName", "Perforce Software\0"
+            VALUE "FileDescription", "Helix Administration Tool (P4Admin)\0"
+            VALUE "FileVersion", P4_FILE_VERSION
+            VALUE "InternalName", "p4admin.exe\0"
+            VALUE "LegalCopyright", P4_STRING_COPYRIGHT
+            VALUE "LegalTrademarks", "\0"
+            VALUE "ProductName", "Helix Admin\0"
+            VALUE "ProductVersion", P4_PRODUCT_VERSION
+            VALUE "OLESelfRegister",""
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1 ICON    DISCARDABLE     "p4admin.ico"
+/////////////////////////////////////////////////////////////////////////////
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
