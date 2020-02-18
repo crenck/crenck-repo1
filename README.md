@@ -1,5 +1,2 @@
 # crenck-repo1
-# crenck-repo1
-# crenck-repo1
-# crenck-repo1
-Test repo1
+Test repo1 for Perforce gitconnector tests
